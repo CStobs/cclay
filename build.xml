@@ -1,5 +1,5 @@
 <?xml version="1.0" ?> 
-<project name="City Clay" default="war">
+<project name="CityClay" default="war">
 
 	<path id="compile.classpath">
 		<fileset dir="webapp/WEB-INF/lib">
@@ -9,6 +9,8 @@
 	
 	<target name="init">
 		<mkdir dir="build/classes"/>
+		<mkdir dir="build/css"/>
+		<mkdir dir="build/js"/>
 		<mkdir dir="dist" />
 	</target>
 	
@@ -18,11 +20,28 @@
 		</javac>
 	</target>
 	
-	<target name="war" depends="compile">
+	<target name="grunt" depends="compile">
+		<exec executable="cmd">
+			<arg value="/c"/>
+			<arg value="npm install"/>
+		</exec>
+		<exec executable="cmd">
+			<arg value="/c"/>
+			<arg value="bower install"/>
+		</exec>
+		<exec executable="cmd">
+			<arg value="/c"/>
+			<arg value="grunt"/>
+		</exec>
+	</target>
+	
+	<target name="war" depends="grunt">
 		<war destfile="dist/CityClay.war" webxml="webapp/WEB-INF/web.xml">
 			<fileset dir="webapp"/>
 			<lib dir="webapp/WEB-INF/lib"/>
 			<classes dir="build/classes"/>
+			<zipfileset  dir="build/js" prefix="js"/>
+			<zipfileset  dir="build/css" prefix="css"/>
 		</war>
 	</target>
 	

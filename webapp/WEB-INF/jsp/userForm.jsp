@@ -5,12 +5,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" type="text/css" href="css/style.css" />
 <title>Registration Page</title>
 </head>
 <body>
 
 <form:form method="POST" commandName="user">
-	<table>
+	<table class="user-table">
 		<tr>
 			<td>User Name :</td>
 			<td><form:input path="name" /></td>
