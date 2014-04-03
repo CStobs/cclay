@@ -5,6 +5,5 @@ build
 nbproject/
 bower_components/
 node_modules/
-pom.xml
 target/
 npm-debug.log
